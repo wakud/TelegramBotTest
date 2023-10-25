@@ -1,12 +1,14 @@
 ﻿using Microsoft.Data.SqlClient;
 using Telegram.Bot.Types;
+using TelegramBotTest.Web.Data;
 
 namespace TelegramBotTest.Web.Repository
 {
     public class Repository : IRepository
     {
         private readonly IConfiguration _configuration;
-        private readonly string _connectionString;
+        private readonly string? _connectionString;
+        //private readonly TelegramDbContext _context;
 
         public Repository(IConfiguration configuration)
         {
@@ -23,7 +25,7 @@ namespace TelegramBotTest.Web.Repository
                 connection.Open();
                 var command = new SqlCommand();
                 command.Connection = connection;
-                command.CommandText = $"SELECT UserName, CreatedUser FROM AppUser WHERE ChatId LIKE '{update.Message.Chat.Id}'";
+                command.CommandText = $"SELECT UserName, CreatedUser FROM AppUser WHERE ChatId LIKE '{update.CallbackQuery.Message.Chat.Id}'";
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {

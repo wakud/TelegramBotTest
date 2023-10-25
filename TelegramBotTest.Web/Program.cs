@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using TelegramBotTest.Web.BLL;
 using TelegramBotTest.Web.Data;
 using TelegramBotTest.Web.Repository;
 
@@ -12,6 +13,7 @@ builder.Services.AddDbContextPool<TelegramDbContext>( options =>
 );
 
 builder.Services.AddScoped<IRepository, Repository>();
+builder.Services.AddScoped<IBot, Bot>();
 
 var app = builder.Build();
 
