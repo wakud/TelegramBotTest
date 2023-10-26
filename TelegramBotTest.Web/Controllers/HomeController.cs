@@ -32,11 +32,12 @@ namespace TelegramBotTest.Web.Controllers
             OpenLinkInBrowser("https://t.me/free_user_test_bot");
 
             var botClient = new TelegramBotClient(_configuration["Telegram:BotToken"]);
+
             using var cts = new CancellationTokenSource();
             var receiverOptions = new ReceiverOptions()
             {
                 AllowedUpdates = { }
-            }; 
+            };
 
             botClient.StartReceiving(
                 _bot.HandleUpdateAsync,
