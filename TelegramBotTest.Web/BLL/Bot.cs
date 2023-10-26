@@ -39,8 +39,6 @@ namespace TelegramBotTest.Web.BLL
 
                 Console.WriteLine($"Отримано повідомлення: '{messageText}' в чаті {chatId}");
 
-                #region [first message]
-
                 if (messageText == "/start")
                 {
                     var sentMessage = await botClient.SendTextMessageAsync(
@@ -51,11 +49,8 @@ namespace TelegramBotTest.Web.BLL
                     );
                     _repository.RegisterUser(update);
                 }
-
-                #endregion
             }
             else if (update.CallbackQuery is { Data: "/get_user" })
-                //if (messageText == "/get_user")
             {
                 var userStr = string.Empty;
                 var user = _repository.GetUser(update);
@@ -77,7 +72,6 @@ namespace TelegramBotTest.Web.BLL
                         cancellationToken: cancellationToken
                     );
                 }
-
             }
         }
 

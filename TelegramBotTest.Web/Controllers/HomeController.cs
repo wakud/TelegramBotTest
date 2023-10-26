@@ -9,15 +9,12 @@ namespace TelegramBotTest.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
         private readonly IConfiguration _configuration;
 
         private readonly IBot _bot;
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration configuration, IBot bot)
+        public HomeController(IConfiguration configuration, IBot bot)
         {
-            _logger = logger;
             _configuration = configuration;
             _bot = bot;
         }
@@ -29,7 +26,7 @@ namespace TelegramBotTest.Web.Controllers
 
         public async void Index()
         {
-            OpenLinkInBrowser("https://t.me/free_user_test_bot");
+            OpenLinkInBrowser(_configuration["Telegram:ChannelUrl"]);
 
             var botClient = new TelegramBotClient(_configuration["Telegram:BotToken"]);
 
