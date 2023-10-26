@@ -44,7 +44,6 @@ namespace TelegramBotTest.Web.Controllers
             );
 
             var me = await botClient.GetMeAsync();
-            Console.WriteLine($"Start work with @" + me.Username);
             await Task.Delay(int.MaxValue);
             cts.Cancel();
         } 

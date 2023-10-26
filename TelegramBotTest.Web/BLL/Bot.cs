@@ -3,21 +3,14 @@ using Telegram.Bot.Types.Enums;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using TelegramBotTest.Web.Repository;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using Telegram.Bot.Types.ReplyMarkups;
 using TelegramBotTest.Web.Data;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace TelegramBotTest.Web.BLL
 {
     public class Bot : IBot
     {
         private readonly IRepository _repository;
-
-        private const string TEXT_1 = "Один";
-        private const string TEXT_2 = "Два";
-        private const string TEXT_3 = "Три";
-        private const string TEXT_4 = "Четыре";
 
         public Bot(IRepository repository, TelegramDbContext context)
         {
@@ -32,12 +25,6 @@ namespace TelegramBotTest.Web.BLL
             {
                 var chatId = update.Message.Chat.Id;
                 var messageText = update.Message.Text;
-                var userName = update.Message.From.Username;
-                var firstName = update.Message.From.FirstName;
-                var lastName = update.Message.From.LastName;
-                var createUser = DateTime.UtcNow;
-
-                Console.WriteLine($"Отримано повідомлення: '{messageText}' в чаті {chatId}");
 
                 if (messageText == "/start")
                 {
